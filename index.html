@@ -1,0 +1,198 @@
+<?php
+$var = "PHP Tutorial";
+// source : https://www.w3resource.com/php-exercises/php-basic-exercises.php
+?>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title><?php echo $var ?> - W3resource!</title>
+  </head>
+  <body>
+  <h3><?php echo $var ?></h3>
+  <p>PHP, an acronym for Hypertext Preprocessor, is a widely-used open source general-purpose scripting language. <br />
+  It is a cross-platform, HTML embedded server-side scripting language and is especially suited for web development.</p>
+  <p><a href="https://www.w3resource.com/php/php-home.php">Go to the <?php echo $var; ?></a>.</p>
+  <br />
+
+  <h3>Please input : </h3>
+  
+  <?php
+	  $name = "";
+  if (!empty($_GET["fname"])){
+  $name = $_GET["fname"];
+  }  
+  
+  ?>
+  
+  <form method="get" >
+  <input type="text" id="fname" name="fname" value="<?php echo $name?>">
+	<input type="submit" value="Submit Name">
+	
+	</form> 
+	<?php 
+
+
+	echo "<h3>Hello</h3>";echo $name;
+	?>
+	
+<?php
+/*
+//whether ip is from share internet
+if (!empty($_SERVER['HTTP_CLIENT_IP']))   
+  {
+    $ip_address = $_SERVER['HTTP_CLIENT_IP'];
+  }
+//whether ip is from proxy
+elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))  
+  {
+    $ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+  }
+//whether ip is from remote address
+else
+  {
+    $ip_address = $_SERVER['REMOTE_ADDR'];
+  }
+echo $ip_address;
+*/
+?>
+	
+	<?php 
+	/*echo $_SERVER['REMOTE_ADDR'];
+	echo $_SERVER["HTTP_CLIENT_IP"];
+ echo $_SERVER['HTTP_X_FORWARDED_FOR'];
+ echo $_SERVER['HTTP_X_FORWARDED'];
+ echo $_SERVER['HTTP_FORWARDED_FOR'];
+ echo $_SERVER['HTTP_FORWARDED'];
+	*/?>
+	
+	<?php 
+	
+	//echo $_SERVER['HTTP_USER_AGENT'];
+	
+	//$curr_browser = get_browser();
+	//print $curr_browser;
+	?>
+	
+	<?php
+	//$jsonData = json_decode(file_get_contents('http://chart.googleapis.com/chart?cht=p3&chs=250x100&chd=t:60,40&chl=Hello|World&chof=json'));
+	//echo $jsonData;
+	?>
+	
+	<?PHP
+	//echo file_get_contents('http://chart.googleapis.com/chart?cht=p3&chs=250x100&chd=t:60,40&chl=Hello|World&chof=json');
+	
+	/*
+	$curlSession = curl_init();
+	curl_setopt_array($curlSession, array(
+    CURLOPT_RETURNTRANSFER => 1,
+    CURLOPT_URL => 'https://www.w3resource.com/php-exercises/php-basic-exercises.php',
+    CURLOPT_USERAGENT => 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13'
+));
+	
+	$jsonData = curl_exec($curlSession);
+	echo $jsonData;
+	curl_close($curlSession);
+	*/
+
+/*
+if (!empty($_SERVER['HTTPS'])) 
+{
+  echo 'https is enabled';
+}
+else
+{
+echo 'http is enabled'."\n";
+}
+*/
+
+// oddly, this works
+//header('Location: http://chart.googleapis.com/chart?cht=p3&chs=250x100&chd=t:60,40&chl=Hello|World');
+
+/*
+	$email = $name;
+
+if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+  echo("$email is a valid email address");
+} else {
+  echo("$email is not a valid email address");
+}
+*/
+
+
+/*
+echo "<table border=1>
+<tr><th>legend</th><th>amount</th></tr>
+<tr><td>salary of a</td><td>$1000</td></tr>
+<tr><td>salary of b</td><td>$200</td></tr>
+<tr><td>salary of c</td><td>$1400</td></tr>
+</table>";
+*/
+
+//this does not work
+/*
+$source_code = file('http://localhost:8080/helloworld');
+
+foreach ($source_code as $line_number => $last_line) {
+	echo nl2br(htmlspecialchars($last_line)."\n");
+}
+*/
+
+// this works
+//show_source("index.html");
+// this doesn't work
+//show_source("https://www.w3resource.com/php-exercises/php-basic-exercises.php");
+	
+	// this can get last modified information of a file
+	/*
+	$currentFileName = basename($_SERVER['PHP_SELF']);
+	$fileLastModified = filemtime($currentFileName);
+	echo date_default_timezone_get()." last modified : ".date("l, dS F, Y, h:ia", $fileLastModified);
+	*/
+	
+	/*
+	$source_code = file('index.html');
+	foreach ($source_code as $line_number => $last_line) {
+	echo nl2br($line_number." ".htmlspecialchars($last_line)."\n");
+}
+*/
+/*
+	// this works
+	$file = basename($_SERVER['PHP_SELF']); 
+$no_of_lines = count(file($file)); 
+echo "There are $no_of_lines lines in $file"."\n";
+	// this not work
+$no_of_lines = count(file(basename($_SERVER['PHP_SELF']))); 
+echo "There are $no_of_lines lines in $file"."\n";
+	*/
+	
+	/*
+	// what is the point?
+	// displaying time
+echo date('h:i:s')."\n" ;   
+// delaying execution of the script for 2 seconds
+sleep(2);   
+// displaying time again
+echo date('h:i:s');
+	*/
+	
+	/*
+	// what is the point?
+	$d = 'A00';
+	echo (++$d);
+	for($n=0;$n<5;$n++){
+	echo ++$d;
+	echo nl2br("\r\n");
+	}
+	*/
+	
+	
+	
+	//echo __FILE__;
+	
+	//$currFileName = basename($_SERVER['PHP_SELF']);
+	//echo $currFileName;
+	?>
+
+</body>
+</html>
