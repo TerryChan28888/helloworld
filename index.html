@@ -109,9 +109,10 @@ echo 'http is enabled'."\n";
 // oddly, this works
 //header('Location: http://chart.googleapis.com/chart?cht=p3&chs=250x100&chd=t:60,40&chl=Hello|World');
 
+
+//built-in constant allow easy format check
 /*
 	$email = $name;
-
 if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
   echo("$email is a valid email address");
 } else {
@@ -144,11 +145,13 @@ foreach ($source_code as $line_number => $last_line) {
 //show_source("https://www.w3resource.com/php-exercises/php-basic-exercises.php");
 	
 	// this can get last modified information of a file
+	// in php.ini, related : date.timezone
 	/*
 	$currentFileName = basename($_SERVER['PHP_SELF']);
 	$fileLastModified = filemtime($currentFileName);
 	echo date_default_timezone_get()." last modified : ".date("l, dS F, Y, h:ia", $fileLastModified);
 	*/
+	
 	
 	/*
 	$source_code = file('index.html');
@@ -176,15 +179,20 @@ sleep(2);
 echo date('h:i:s');
 	*/
 	
-	/*
-	// what is the point?
-	$d = 'A00';
+	
+	// what is the point? increment operator can be used on integer in string, ascii character in string, ...
+	// but not non-ascii character
+	// crack PIN / PW ?!
+	// https://stackoverflow.com/questions/17367844/when-to-use-the-increment-operator-on-strings-in-php
+	
+	/*$d = 'x沒昌';
 	echo (++$d);
 	for($n=0;$n<5;$n++){
 	echo ++$d;
 	echo nl2br("\r\n");
 	}
 	*/
+	
 	
 	/*
 	// what is the point? ternary operator, trinary test... no. of parameter is 3 when ?:(ternary operator) is used
@@ -212,7 +220,7 @@ echo $n." : ".$r."\n";
 	*/
 	
 	
-	// string comparison in php
+	// string comparison(?) in php
 	/*
 if (version_compare(PHP_VERSION, '6.0.0') >= 0) {
 echo 'I am at least PHP version 6.0.0, my version: ' . PHP_VERSION . "\n";
@@ -230,11 +238,333 @@ echo 'I am using PHP 4, my version: ' . PHP_VERSION . "\n";
 }
 */
 	
+	// how php can be used
+	//echo 'Current script owner: ' . get_current_user()."\n";
+// how php can be used
+	//$rd = getenv('DOCUMENT_ROOT');
+	//echo $rd."\n";
 	
-
+	// how php can be used
+	/*
+	 echo php_uname()."\n";
+echo PHP_OS."\n";
+if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+echo 'This is a server using Windows!';
+} else {
+echo 'This is a server not using Windows!'."\n";
+}
+*/
 	
-	
+	// how php can be used
+	//phpcredits(CREDITS_ALL - CREDITS_FULLPAGE);
 	//echo __FILE__;
+	
+	// how php can be used
+	/*
+	print_r(get_extension_funcs("JSON"));
+	echo nl2br("\n");
+	print_r(get_extension_funcs("XML"))."\n";
+	*/
+	
+	
+	// swap variable
+	/*
+	$a = 'A';
+	$b = 'B';
+	
+	//this works
+	//$temp = $a;
+	//$temp_b = $b;
+	//$a = $temp_b;
+	//$b = $temp;
+	
+	// this works
+	$temp = $a;
+	$a = $b;
+	$b = $temp;
+	
+	echo nl2br($a."\n");
+	echo $b."\n";
+	*/
+	
+	
+	// php have no operator of cube
+	/*
+	$test = 153;
+	$str = strval($test);
+	
+	$result = intval(substr($str, 0, 1))*intval(substr($str, 0, 1))*intval(substr($str, 0, 1)) +
+	intval(substr($str, 1, 1))*intval(substr($str, 1, 1))*intval(substr($str, 1, 1)) + 
+	intval(substr($str, 2, 1))*intval(substr($str, 2, 1))*intval(substr($str, 2, 1)) ;
+	echo $result===$test?"true":"false";
+	*/
+	
+	// split for java; explode for php
+	/*
+	$input = "zero;three;five;six;eight;one";
+	$array = explode(';',$input);
+	//print_r($array);
+	for($n=0;$n<count($array);$n++){
+		//echo $array[$n];		
+		if(trim($array[$n])==="zero"){echo 0;
+		} else if(trim($array[$n])==="one"){echo 1;
+		} else if(trim($array[$n])==="three"){echo 3;
+		} else if(trim($array[$n])==="five"){echo 5;
+		} else if(trim($array[$n])==="six"){echo 6;
+		} else if(trim($array[$n])==="eight"){echo 8;
+		}		
+	}
+	*/
+	
+	// unique elements in an array
+	/*
+	$array = array(1,1,2,2,3,4,5,5);
+	$unique = array();
+	for($n=0;$n<count($array);$n++){
+		if(count($unique)==0){
+		array_push($unique, $array[$n]);
+		}
+		
+		for($m=0;$m<count($unique);$m++){
+		//echo "nth array element is ".$array[$n];
+		if(!in_array($array[$n], $unique)){
+			array_push($unique, $array[$n]);
+		}
+		}
+		
+		// a wrong way
+		//for($m=0;$m<count($unique);$m++){
+		//	if($array[$n]!==$unique[$m]){
+		//	array_push($unique, $array[$n]);
+		//	}
+		//}
+		
+	}
+	for($m=0;$m<count($unique);$m++){
+	print_r($unique[$m]);
+	}
+	*/
+	
+	// what php can do
+	//echo filesize("index.html");
+	
+	
+	// modulo operator impl
+	//$a = 56;
+	//$m = 5;
+	
+	// w/ for loop
+	/*
+	$storedA = $a;
+	$storedM = $m;
+	for($n=1;$n<($storedA/$storedM);$n++){
+	$a = $a-$m;
+	}
+	echo $a;
+	*/
+	
+	// w/ recursion
+	/*
+	function modulus ($dividend, $divisor){
+	if($dividend<$divisor){
+		return $dividend;
+	} else {
+		return modulus($dividend-$divisor, $divisor);
+	}
+	}
+	echo modulus($a, $m);
+	*/
+	
+	
+	// padding between digits, but none of these methods work
+	//header('Content-Type:text/plain; charset=UTF-8');
+	/*
+	$array = array(1,  2,  3,  4,  5,  6);
+	for ($n=1;$n<7;$n++){
+		for ($m=1;$m<7;$m++){
+		//echo str_pad($n*$m, 4, " ", STR_PAD_LEFT);
+		//echo $n*$m;
+		//echo "  ";
+		//if($n*$m<10){echo "   ";}
+		//else{echo "  ";}
+		}
+		echo nl2br("\n");
+	}
+	*/
+	
+	
+	// if a string is provided, find out the 1st unique char
+	/*
+	$stringToBeTest = "abcdea";
+	$array = str_split($stringToBeTest,1);
+	$unique = array();
+	for($n=0;$n<count($array);$n++){
+		if(count($unique)==0){
+		array_push($unique, $array[$n]);
+		}
+		
+		for($m=0;$m<count($unique);$m++){
+		if(!in_array($array[$n], $unique)){
+			array_push($unique, $array[$n]);
+		}
+		}		
+	}//print_r( $unique);
+	
+	$unique_count = array();
+	for($n=0;$n<count($unique);$n++){
+	//if(in_array($array[$n], $unique))
+	//{echo $array[$n];break;}
+	
+	//echo substr_count("abcdea",$unique[$n]);
+	//array_push($unique_count, $unique[$n]);
+	
+	if(substr_count($stringToBeTest,$unique[$n]) === 1){
+	echo $unique[$n];
+	break;
+	}
+	
+	}
+	*/
+	
+	
+	// get the product of two vectors
+	/*
+	$v1 = array(2, 4, 6);
+	$v2 = [1 , 1, 1];
+	$scalarProduct=0;
+	if(count($v1) == count($v2)){	
+		for($n=0; $n<count($v1); $n++){
+		$scalarProduct = $scalarProduct + $v1[$n]*$v2[$n];
+		}	
+	}	
+	print_r( $scalarProduct);
+	*/
+	
+	
+	// get an integer's digits' sum
+	// new function to print variables : var_dump
+	/*
+	$int = 1555;
+	$str = strval($int);
+	$array = str_split($str,1);
+	
+	$toEcho = 0;
+	for($n=0; $n<count($array); $n++){
+		$toEcho = $toEcho+$array[$n];
+	}
+	echo $toEcho;
+	*/
+	// alt: get an integer's digits' sum
+	// use function strlen
+	/*
+	$int = 1555;
+	$str = strval($int);
+	$result = 0;
+	for($n=0; $n<strlen($str); $n++){
+	$result = $result + $str[$n]; // the calculation is done w/ or w/o intval()
+	}
+	echo $result;
+	*/
+	
+	
+	// get the 3 largest number in an integer array
+	/*
+	$array = [25, 19, 23, 45, 18, 23, 24, 19];
+	$a = $array[0];
+	$position = 0;
+	for($n=0; $n<count($array); $n++){
+	
+	if($a<$array[$n]){ $a = $array[$n];	$position = $n;}
+	
+	}
+	echo nl2br("highest one is ".$array[$position]."\n");
+	unset($array[$position]); 
+	$array_2 = array_values($array);
+	//print_r($array);
+	
+	$a = $array_2[0];
+	$position = 0;
+	for($n=0; $n<count($array_2); $n++){	
+	//echo nl2br($array_2[$n]." ".$n."\n");
+	if($a<$array_2[$n]){ 
+	$a = $array_2[$n];	
+	$position = $n;
+	}	
+	}
+	echo nl2br("2nd highest one is ".$array_2[$position]."\n");
+	unset($array_2[$position]); 
+	$array_3 = array_values($array_2);
+	
+	
+	$a = $array_3[0];
+	$position = 0;
+	for($n=0; $n<count($array_3); $n++){	
+	//echo nl2br($array_3[$n]." ".$n."\n");
+	if($a<$array_3[$n]){ 
+	$a = $array_3[$n];	
+	$position = $n;
+	}	
+	}
+	echo nl2br("3rd highest one is ".$array_3[$position]."\n");
+	*/
+	
+	
+	//solve simultaneous linear equations
+	/*
+	$a = 2;
+	$b = 2;
+	$c = 4;		
+	$d = 5;
+	$e = 8;
+	$f = 8;	
+	$y = 0;$x =0;	
+	$y = ($c/$a-$f/$d)/($b/$a-$e/$d);
+	$x = ($c/$b-$f/$e)/($a/$b-$d/$e);	
+	echo "y is ".$y." x is ".$x;
+	*/
+	
+	
+	// debt calculator, perhaps get it wrong
+	/*
+	$loan = 100000;
+	$interest = 1+(0.05/12);
+	$numOfMonth = 12;
+	$debt=$loan;
+	for($n=0; $n<$numOfMonth; $n++){
+	$debt=$debt*$interest;
+	}
+	echo $debt;
+	*/
+	
+	
+	// show the permutation of sum of 4 integers
+	/*
+	$int = 10;	
+	for($i=0;$i<$int;$i++){
+		for($j=0;$j<$int;$j++){
+			for($k=0;$k<$int;$k++){
+				for($l=0;$l<$int;$l++){
+				if($i+$j+$k+$l === $int){echo nl2br($i." + ".$j." + ".$k." + ".$l.PHP_EOL);}
+				}
+			}		
+		}
+	}
+	*/
+	
+	
+	// print the prime list, which is less than an integer
+	/*
+	$int = 100;	echo nl2br(2.PHP_EOL);
+		for($j=3;$j<$int;$j++){
+		$isPrime = true;
+			for($k=2;$k<$j;$k++){
+			if($j%$k === 0){$isPrime = false;}
+			}
+		if($isPrime == true) echo nl2br($j.PHP_EOL);
+		}
+	*/
+	
+	
 	
 	//$currFileName = basename($_SERVER['PHP_SELF']);
 	//echo $currFileName;
